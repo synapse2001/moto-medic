@@ -111,10 +111,10 @@ function BackgroundBeams({ className }) {
                 delay: Math.random() * 10,
               }}
             >
-              <stop stopColor="#18CCFC" stopOpacity="0"></stop>
-              <stop stopColor="#18CCFC"></stop>
-              <stop offset="32.5%" stopColor="#6344F5"></stop>
-              <stop offset="100%" stopColor="#AE48FF" stopOpacity="0"></stop>
+              <stop stopColor="#E76F00" stopOpacity="0"></stop>
+              <stop stopColor="#E76F00"></stop>
+              <stop offset="32.5%" stopColor="#C08B5C"></stop>
+              <stop offset="100%" stopColor="#481E14" stopOpacity="0"></stop>
             </motion.linearGradient>
           ))}
 
