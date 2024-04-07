@@ -1,8 +1,10 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ChatCard from './components/ChatCard';
-import Menu from './components/ui';
-import MenuItem from './components/ui/navbar-menu';
+import { Navbar } from './components/NavBar';
+import Spotlight from './components/ui/Spotlight';
+import carRepairimg from './assets/car-repair.gif'
+import BackgroundBeams from './components/ui/BackgroundBeams';
+
 
 const theme = createTheme({
   palette: {
@@ -25,37 +27,37 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="dark">
-        <div className="h-screen w-full v-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
-          <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-          <div style={{zIndex:999}}>
-            {/* <ChatCard /> */}
-            <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Menu 1">
-          {/* Your content for Menu 1 */}
-          <HoveredLink href="/menu1">Link 1</HoveredLink>
-          <HoveredLink href="/menu1">Link 2</HoveredLink>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Menu 2">
-          {/* Your content for Menu 2 */}
-          <ProductItem
-            title="Product 1"
-            description="Description of product 1"
-            href="/product1"
-            src="/product1.jpg"
-          />
-          <ProductItem
-            title="Product 2"
-            description="Description of product 2"
-            href="/product2"
-            src="/product2.jpg"
-          />
-        </MenuItem>
-        {/* Add more MenuItems here if needed */}
-      </Menu>
+        {/* <div className="h-screen w-full v-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center" style={{ position: 'fixed', overflow: 'scroll' }}> */}
+        <div className="h-screen w-full v-full relative flex items-center justify-center dark:bg-black" style={{ position: 'fixed', overflow: 'scroll' }}>
+          {/* <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
+          <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black"></div>
+          <div style={{ zIndex: 999 }}>
+      <BackgroundBeams />
+            <Navbar />
           </div>
+          <Spotlight
+            className="-top-40 left-0 md:left-60 md:-top-20"
+            fill="white"
+          />
+          <div style={{ height: '50vh' }}>
+            <div className=" p-4 max-w-6xl  mx-auto relative z-10  w-full pt-20 md:pt-0 " style={{}}>
+              <h2 className="text-3xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+                Motomedic<br /> your cars' best friend
+              </h2>
+              <div className="block mx-auto max-w-xs md:max-w-full" style={{ width: '900px', height: 'auto', filter: 'invert(95%)', marginTop: '-100px', marginBottom: '-100px', overflow: 'hidden', maxHeight: 'calc(100% - 100px)' }}>
+                <img
+                  src={carRepairimg}
+                  alt="Car Repair"
+                  className="block mx-auto"
+                  style={{ width: '100%', height: 'auto' }}
+                />
+              </div>
+
+            </div>
           </div>
         </div>
-      </ThemeProvider>
+      </div>
+    </ThemeProvider>
   );
 }
 
