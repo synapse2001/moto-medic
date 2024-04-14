@@ -3,7 +3,7 @@ import carRepairimg from  '../assets/car-repair.gif';
 import TypewriterEffect from '../components/ui/TypewriterEffect';
 const words = [
     {
-      text: "Expierence",
+      text: "Experience",
     },
     {
       text: "the",
@@ -33,8 +33,7 @@ const words = [
 
 
 const WelcomePage = () => {
-    return (
-        
+    return (        
         <Card variant="outline" style={cardStyle}>
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyItems: 'center', minHeight: '70vh', textWrap: 'nowrap' }}>

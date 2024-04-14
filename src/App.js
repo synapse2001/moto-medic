@@ -1,10 +1,11 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Container, Card, CardContent, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { Navbar } from './components/NavBar';
 import Spotlight from './components/ui/Spotlight';
 import background from './assets/background.png';
 import WelcomePage from './pages/WelcomePage';
+import Testimonial from './pages/TestiMonial';
 
 const theme = createTheme({
   palette: {
@@ -23,49 +24,56 @@ const theme = createTheme({
 const containerStyle = {
   height: '100vh',
   display: 'flex',
-  // flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
   background: 'transparent',
 };
+
 const scrollbarStyle = `
-    /* Define scrollbar styles */
     ::-webkit-scrollbar {
       width: 15px;
     }
-
-    /* Track */
     ::-webkit-scrollbar-track {
-      background: #555; /* Set track color */
+      background: #555;
     }
-
-    /* Handle */
     ::-webkit-scrollbar-thumb {
-      background: #000000; /* Set handle color */
+      background: #000000;
     }
-
-    /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-      background: #555; /* Set handle color on hover */
+      background: #555;
     }
-  `;
-
+`;
 
 function App() {
+  const path = window.location.pathname;
+  
+  const renderContent = () => {
+    switch (path) {
+      case "/testimonials":
+        return (
+          <Container maxWidth='md' style={containerStyle}>
+            <Testimonial />
+          </Container>
+        );
+      case "/":
+      default:
+        return (
+          <Container maxWidth='md' style={containerStyle}>
+            
+            <WelcomePage />
+          </Container>
+        );
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <style>{scrollbarStyle}</style>
       <div className="dark" style={{ position: 'relative', minHeight: '100vh' }}>
         <Navbar />
-        <Spotlight
-            className="-top-40 left-0 md:left-60 md:-top-20"
-            fill="white"
-          />
-        <img src={background} alt="Background" style={{ position: 'absolute',  width: '100%', height: '100%',inset: 0, objectFit: 'cover', zIndex: -1, backgroundColor: 'black', filter: 'brightness(10%)' }} />
+        <img src={background} alt="Background" style={{ position: 'absolute',  width: '100%', height: '100%', inset: 0, objectFit: 'cover', zIndex: -1, backgroundColor: 'black', filter: 'brightness(20%)' }} />
         <div style={{ zIndex: 999 }}>
-          <Container maxWidth='md' style={containerStyle}>
-            <WelcomePage />
-          </Container>
+          {renderContent()}
         </div>
       </div>
     </ThemeProvider>
