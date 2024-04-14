@@ -1,60 +1,71 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Container, Card, CardContent, Typography } from '@mui/material';
 import { Navbar } from './components/NavBar';
 import Spotlight from './components/ui/Spotlight';
-import carRepairimg from './assets/car-repair.gif'
-import BackgroundBeams from './components/ui/BackgroundBeams';
-
+import background from './assets/background.png';
+import WelcomePage from './pages/WelcomePage';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#E76F00',
     },
     secondary: {
-      main: '#19857b',
-    },
-    error: {
-      main: '#red',
+      main: '#C08B5C',
     },
     background: {
-      default: '#191919',
+      default: '#000',
     },
   },
 });
 
+const containerStyle = {
+  height: '100vh',
+  display: 'flex',
+  // flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  background: 'transparent',
+};
+const scrollbarStyle = `
+    /* Define scrollbar styles */
+    ::-webkit-scrollbar {
+      width: 15px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #555; /* Set track color */
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #000000; /* Set handle color */
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Set handle color on hover */
+    }
+  `;
+
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="dark">
-        {/* <div className="h-screen w-full v-full dark:bg-black bg-white dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center" style={{ position: 'fixed', overflow: 'scroll' }}> */}
-        <div className="h-screen w-full v-full relative flex items-center justify-center dark:bg-black" style={{ position: 'fixed', overflow: 'scroll' }}>
-          {/* <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
-          <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black"></div>
-          <div style={{ zIndex: 999 }}>
-      <BackgroundBeams />
-            <Navbar />
-          </div>
-          <Spotlight
+      <style>{scrollbarStyle}</style>
+      <div className="dark" style={{ position: 'relative', minHeight: '100vh' }}>
+        <Navbar />
+        <Spotlight
             className="-top-40 left-0 md:left-60 md:-top-20"
             fill="white"
           />
-          <div style={{ height: '50vh' }}>
-            <div className=" p-4 max-w-6xl  mx-auto relative z-10  w-full pt-20 md:pt-0 " style={{}}>
-              <h2 className="text-3xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
-                Motomedic<br /> your cars' best friend
-              </h2>
-              <div className="block mx-auto max-w-xs md:max-w-full" style={{ width: '900px', height: 'auto', filter: 'invert(95%)', marginTop: '-100px', marginBottom: '-100px', overflow: 'hidden', maxHeight: 'calc(100% - 100px)' }}>
-                <img
-                  src={carRepairimg}
-                  alt="Car Repair"
-                  className="block mx-auto"
-                  style={{ width: '100%', height: 'auto' }}
-                />
-              </div>
-
-            </div>
-          </div>
+        <img src={background} alt="Background" style={{ position: 'absolute',  width: '100%', height: '100%',inset: 0, objectFit: 'cover', zIndex: -1, backgroundColor: 'black', filter: 'brightness(10%)' }} />
+        <div style={{ zIndex: 999 }}>
+          <Container maxWidth='md' style={containerStyle}>
+            <WelcomePage />
+          </Container>
         </div>
       </div>
     </ThemeProvider>
