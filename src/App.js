@@ -4,6 +4,7 @@ import { Container } from '@mui/material';
 import { Navbar } from './components/NavBar';
 import Spotlight from './components/ui/Spotlight';
 import background from './assets/background.png';
+import transparentback from './assets/transparentback.png';
 import WelcomePage from './pages/WelcomePage';
 import Testimonial from './pages/TestiMonial';
 
@@ -69,9 +70,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <style>{scrollbarStyle}</style>
-      <div className="dark" style={{ position: 'relative', minHeight: '100vh' }}>
+      <div className="dark"  style={{ position: 'relative', minHeight: '100vh'}}>
         <Navbar />
-        <img src={background} alt="Background" style={{ position: 'absolute',  width: '100%', height: '100%', inset: 0, objectFit: 'cover', zIndex: -1, backgroundColor: 'black', filter: 'brightness(20%)' }} />
+        <div style={{ position: 'absolute', minHeight: '100vh',minWidth:'100vw' ,backgroundImage:`url(${transparentback})`,backgroundColor:'black',zIndex: -1,backgroundSize:"50%",backgroundRepeat:"repeat",filter: 'brightness(20%)'}}>  </div>
         <div style={{ zIndex: 999 }}>
           {renderContent()}
         </div>
